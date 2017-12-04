@@ -16,7 +16,7 @@ export class ListPage {
 
     // Let's populate this page with some filler content for funzies
     this.icons = ['hc-toggle-off', 'hc-toggle-on', 'hc-trash', 'hc-envelope', 'hc-envelope-open', 'hc-paper-plane',
-    'hc-trophy-2', 'hc-equalizer', 'hc-portrait2', 'hc-user'];
+    'hc-trophy2', 'hc-equalizer', 'hc-portrait2', 'hc-user'];
 
     this.items = [];
     for (let i = 1; i < 11; i++) {
