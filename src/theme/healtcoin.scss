@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'healthcoin';
+  src:  url('../assets/fonts/healthcoin.eot?b8u3tw');
+  src:  url('../assets/fonts/healthcoin.eot?b8u3tw#iefix') format('embedded-opentype'),
+    url('../assets/fonts/healthcoin.ttf?b8u3tw') format('truetype'),
+    url('../assets/fonts/healthcoin.woff?b8u3tw') format('woff'),
+    url('../assets/fonts/healthcoin.svg?b8u3tw#healthcoin') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'healthcoin' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin makeIcon($arg, $val) {
+  .ion-ios-#{$arg}:before ,
+  .ion-ios-#{$arg}-circle:before ,
+  .ion-ios-#{$arg}-circle-outline:before ,
+  .ion-ios-#{$arg}-outline:before ,
+  .ion-md-#{$arg}:before ,
+  .ion-md-#{$arg}-circle:before ,
+  .ion-md-#{$arg}-circle-outline:before ,
+  .ion-md-#{$arg}-outline:before {
+  font-family: "healthcoin" !important;
+  content: $val;
+  }
+}
+
+// \.([\S]*):before {\n\s*content: "(.*?)";\n}
+// @include makeIcon($1, '$2');
+
+@include makeIcon(hc-toggle-off, '\e670');
+@include makeIcon(hc-toggle-on, '\e671');
+@include makeIcon(hc-trash, '\e680');
+@include makeIcon(hc-envelope, '\e696');
+@include makeIcon(hc-envelope-open, '\e697');
+@include makeIcon(hc-paper-plane, '\e699');
+@include makeIcon(hc-trophy2, '\e6e3');
+@include makeIcon(hc-equalizer, '\e6f2');
+@include makeIcon(hc-portrait2, '\e71d');
+@include makeIcon(hc-user, '\e71e');
+@include makeIcon(hc-users2, '\e723');
+@include makeIcon(hc-group-work, '\e726');
+@include makeIcon(hc-store, '\e744');
+@include makeIcon(hc-cashier, '\e74a');
+@include makeIcon(hc-bag, '\e74b');
+@include makeIcon(hc-bag2, '\e74c');
+@include makeIcon(hc-cart-empty, '\e74e');
+@include makeIcon(hc-cart-add, '\e752');
+@include makeIcon(hc-cart-remove, '\e753');
+@include makeIcon(hc-tags, '\e756');
+@include makeIcon(hc-calculator, '\e766');
+@include makeIcon(hc-vault, '\e769');
+@include makeIcon(hc-calendar-31, '\e788');
+@include makeIcon(hc-smartphone-notification, '\e7a7');
+@include makeIcon(hc-bubble, '\e7d6');
+@include makeIcon(hc-bubble-dots, '\e7d8');
+@include makeIcon(hc-bubble-alert, '\e7d9');
+@include makeIcon(hc-bubble-text, '\e7db');
+@include makeIcon(hc-bubble-heart, '\e7e1');
+@include makeIcon(hc-heart-pulse, '\e7e8');
+@include makeIcon(hc-pulse, '\e7e9');
+@include makeIcon(hc-chart-bars, '\e7fc');
+@include makeIcon(hc-chart-settings, '\e7fd');
+@include makeIcon(hc-gift, '\e7ff');
+@include makeIcon(hc-dinner, '\e811');
+@include makeIcon(hc-footprint, '\e833');
+@include makeIcon(hc-dolly, '\e83c');
+@include makeIcon(hc-truck, '\e857');
+@include makeIcon(hc-alarm, '\e8aa');
+@include makeIcon(hc-alarm-snooze, '\e8ac');
+@include makeIcon(hc-alarm-ringing, '\e8ad');
+@include makeIcon(hc-history, '\e8e3');
+@include makeIcon(hc-clock3, '\e8e8');
+@include makeIcon(hc-enter-right, '\e8fa');
+@include makeIcon(hc-exit-right, '\e8fe');
+@include makeIcon(hc-menu, '\e92b');
+@include makeIcon(hc-list, '\e92c');
+@include makeIcon(hc-check, '\e934');
+@include makeIcon(hc-notification, '\e954');
+@include makeIcon(hc-question-circle, '\e957');
+@include makeIcon(hc-ellipsis, '\e9e9');
