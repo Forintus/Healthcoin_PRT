@@ -1,0 +1,8 @@
+{
+  "name": "HealthcoinPRT",
+  "app_id": "bce18085",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
