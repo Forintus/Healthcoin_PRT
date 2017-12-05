@@ -1,9 +1,16 @@
 .light-theme {
-    ion-content {
-      background-color: #fff;
-    }
+    // ion-content {
+    //   background-color: #ff7323;
+    // }
+
+    $background-color: red;
+
    
     .toolbar-background {
-      background-color: #fff;
+      background-color: #ff7323;
     }
+
+    .toolbar-title {
+        color: #ffffff;
+    }        
   }

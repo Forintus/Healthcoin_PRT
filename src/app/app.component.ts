@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 // import { ProductsPage } from '../pages/products/products';
 
 import { TranslateService } from '@ngx-translate/core';
+import { SettingsProvider } from '../providers/settings/settings';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,11 +21,11 @@ export class MyApp {
   pages: Array<{title: string, icon: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
-    public translateService: TranslateService) {
+    public translateService: TranslateService, private settingsProvider: SettingsProvider ) {
 
-    // this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
+    this.settingsProvider.getActiveTheme().subscribe(theme => this.selectedTheme = theme);
 
-    this.selectedTheme = "dark-theme";
+    // this.selectedTheme = "light-theme";
 
     this.initializeApp();
 
@@ -33,7 +34,8 @@ export class MyApp {
       { title: 'Home', icon: '' ,component: HomePage },
       { title: 'List', icon: '', component: ListPage },
       { title: 'Products', icon: 'hc-store', component: 'ProductsPage' },
-      { title: 'Cart', icon: 'hc-cart-empty', component: 'CartPage' }
+      { title: 'Cart', icon: 'hc-cart-empty', component: 'CartPage' },
+      { title: 'Settings', icon: 'hc-equalizer', component: 'SettingsPage' }
     ];
   }
 

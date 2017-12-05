@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SettingsProvider } from '../../providers/settings/settings';
 
 /**
  * Generated class for the SettingsPage page.
@@ -15,11 +16,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private selectedTheme: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private settingsProvider: SettingsProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
+
+    this.settingsProvider.getActiveTheme()
+      .subscribe(theme => {
+        this.selectedTheme = theme
+      })
+      .unsubscribe();
   }
 
+  themeChanged(theme) {
+    this.settingsProvider.setActiveTheme(theme);
+  }
 }

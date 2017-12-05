@@ -41,8 +41,6 @@ $colors: (
   dark:       #222
 );
 
-// $background-color: red;
-
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -81,7 +79,7 @@ $colors: (
 // http://ionicframework.com/docs/ionicons/
 
 @import "ionicons";
-
+@import "healtcoin";
 
 // Fonts
 // --------------------------------------------------

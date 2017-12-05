@@ -16,6 +16,19 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+<ion-list radio-group [(ngModel)]="selectedTheme" (ionChange)="themeChanged($event)">
+  <ion-item>
+      <ion-label>Default theme</ion-label>
+      <ion-radio value="default-theme"></ion-radio>
+  </ion-item>
+  <ion-item>
+      <ion-label>Light theme</ion-label>
+      <ion-radio value="light-theme"></ion-radio>
+  </ion-item>
+  <ion-item>
+      <ion-label>Dark theme</ion-label>
+      <ion-radio value="dark-theme"></ion-radio>
+  </ion-item>
+</ion-list>
 </ion-content>
