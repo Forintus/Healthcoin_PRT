@@ -3,10 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-// import { ProductsPage } from '../pages/products/products';
-
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsProvider } from '../providers/settings/settings';
 
@@ -16,7 +12,7 @@ import { SettingsProvider } from '../providers/settings/settings';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = 'ProductsPage';
   selectedTheme: string;
   pages: Array<{title: string, icon: string, component: any}>;
 
@@ -31,8 +27,6 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', icon: '' ,component: HomePage },
-      { title: 'List', icon: '', component: ListPage },
       { title: 'Products', icon: 'hc-store', component: 'ProductsPage' },
       { title: 'Cart', icon: 'hc-cart-empty', component: 'CartPage' },
       { title: 'Settings', icon: 'hc-equalizer', component: 'SettingsPage' }
