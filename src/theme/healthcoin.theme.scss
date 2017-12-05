@@ -10,14 +10,14 @@ $colors: (
   secondary:  #32db64,
   danger:     #d91e18,
   light:      #f4f4f4,
-  dark:       #222,
+  dark:       #222
 
 ) !default;
 
 
 $text-color:                 #fff !default;
-$link-color:                 color($colors, primary) !default;
-$background-color:           #191919 !default;
+$link-color:                 color($colors, dark) !default;
+$background-color:           #ff7323 !default;
 $subdued-text-color:         #666 !default;
 
 $font-family-base:           -apple-system, "Helvetica Neue", "Roboto", sans-serif !default;
@@ -26,8 +26,8 @@ $font-size-base:             1.4rem !default; // 1.4rem == 14px
 $content-padding:            16px !default;
 $content-margin:             16px !default;
 
-$toolbar-background:         #151515 !default;
-$toolbar-border-color:       #222 !default;
+$toolbar-background:         #ff7323 !default;
+$toolbar-border-color:       color($colors, dark) !default;
 $toolbar-text-color:         $text-color !default;
 $toolbar-active-color:       $link-color !default;
 $toolbar-inactive-color:     #8c8c8c !default;
@@ -38,5 +38,21 @@ $tabs-tab-color-inactive:    #8c8c8c !default;
 $tabs-tab-color-active:      $link-color !default;
 
 $list-text-color:            $text-color !default;
-$list-background-color:      #242424 !default;
-$list-border-color:          #000 !default;
+$list-background-color:      #ff7323 !default;
+// $list-border-color:          orange !default;
+
+.menu-inner {
+    .toolbar {
+      .toolbar-background {
+        background-color: #948c87 !important;        
+      }
+    }
+    .content{
+    background-color: #948c87 !important;
+    .list {
+      .item {
+        background-color: #948c87 !important;
+      }
+    }
+  }
+}
