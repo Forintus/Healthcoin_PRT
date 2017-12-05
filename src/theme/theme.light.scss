@@ -1,9 +1,9 @@
 .light-theme {
-    // ion-content {
-    //   background-color: #ff7323;
-    // }
+    ion-content {
+      background-color: #ff7323;
+    }
 
-    $background-color: red;
+    $background-color: ff7323 !default;
 
    
     .toolbar-background {
