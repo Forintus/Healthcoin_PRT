@@ -16,11 +16,15 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
-
+  selectedTheme: string;
   pages: Array<{title: string, icon: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
     public translateService: TranslateService) {
+
+    // this.settings.getActiveTheme().subscribe(val => this.selectedTheme = val);
+
+    this.selectedTheme = "dark-theme";
 
     this.initializeApp();
 
