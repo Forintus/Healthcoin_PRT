@@ -26,7 +26,7 @@ export class SettingsPage {
 
     this.settingsProvider.getActiveTheme()
       .subscribe(theme => {
-        this.selectedTheme = theme
+        this.selectedTheme = theme;
       })
       .unsubscribe();
   }

@@ -13,7 +13,7 @@ export class SettingsProvider {
   private theme: BehaviorSubject<string>;
 
   constructor(public http: HttpClient) {
-    console.log('Constructing SettingsProvider Provider');
+    console.log('Constructing Settings Provider');
 
     this.theme = new BehaviorSubject('default-theme');
   }

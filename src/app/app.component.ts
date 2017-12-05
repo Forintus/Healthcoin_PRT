@@ -27,6 +27,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Home', icon: 'hc-chart-bars', component: 'HomePage' },
       { title: 'Products', icon: 'hc-store', component: 'ProductsPage' },
       { title: 'Cart', icon: 'hc-cart-empty', component: 'CartPage' },
       { title: 'Settings', icon: 'hc-equalizer', component: 'SettingsPage' }

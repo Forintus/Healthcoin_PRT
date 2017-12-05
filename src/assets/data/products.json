@@ -1,0 +1,18 @@
+[
+    { "name": "Appels", "price": 120, "discount": "50", "coins": 1000, "image": "appels", "information": "een maand lang gratis appels thuisbezorgd", "favorite": false },
+    { "name": "Detox", "price": 5, "discount": "100", "coins": 1000, "image": "detox", "information": "een gratis 'detox drink'", "favorite": false },
+    { "name": "Fruit", "price": 150, "discount": "50", "coins": 2000, "image": "fruit", "information": "een maand lang gratis fruit thuisbezorgd", "favorite": false },
+    { "name": "Schoenen", "price": 135, "discount": "50", "coins": 3000, "image": "schoenen", "information": "een paar superstrakke hardloopschoenen in jouw maat", "favorite": false },
+    { "name": "Spinning", "price": 120, "discount": "100", "coins": 3000, "image": "spinning", "information": "10 'spinning clinics' bij een sportschool naar keuze", "favorite": false },
+    { "name": "Groente", "price": 120, "discount": "50", "coins": 2000, "image": "groente", "information": "een maand lang gratis groente thuisbezorgd", "favorite": false },
+    { "name": "Dumbells", "price": 50, "discount": "50", "coins": 1000, "image": "dumbells", "information": "een paar dumbells van een gewicht naar keuze", "favorite": false },
+    { "name": "Hamburger", "price": 10, "discount": "100", "coins": 1000, "image": "hamburger", "information": "een gratis gezonde 'vegaburger'", "favorite": false },
+    { "name": "Energy", "price": 5, "discount": "100", "coins": 500, "image": "energy", "information": "een gratis 'energy fruit booster'", "favorite": false },
+    { "name": "Paprika", "price": 120, "discount": "50", "coins": 2000, "image": "paprika", "information": "een maand lang gratis parika's thuisbezorgd", "favorite": false },
+    { "name": "Smoothie", "price": 5, "discount": "100", "coins": 1000, "image": "smoothie", "information": "een supergezonde smoothie", "favorite": false },
+    { "name": "Cocktail", "price": 5, "discount": "100", "coins": 1000, "image": "cocktail", "information": "een overheerlijk en retegezonde fruitcocktail", "favorite": false },
+    { "name": "Crossfit", "price": 120, "discount": "50", "coins": 3000, "image": "crossfit", "information": "10 'crossfit clinics' bij een sportschool naar keuze", "favorite": false },
+    { "name": "Sneakers", "price": 135, "discount": "50", "coins": 3000, "image": "sneakers", "information": "een paar superstrakke sneakers in jouw maat", "favorite": false },
+    { "name": "Watch", "price": 500, "discount": "25", "coins": 5000, "image": "watch", "information": "op een Apple Watch waarmee je nog meer coins per uur scoort", "favorite": false },
+    { "name": "Yoga", "price": 120, "discount": "50", "coins": 3000, "image": "yoga", "information": "10 'yoga clinics' bij een sportschool naar keuze", "favorite": false }
+]
