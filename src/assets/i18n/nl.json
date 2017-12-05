@@ -71,7 +71,6 @@
   "username": "username",
   "ForgotPassword": "Forgot Password",
   "Therearenoorders.": "There are no orders.",
-  "OrderNumber": "Order Number",
   "Orderdate": "Order date",
   "Shipto": "Ship to",
   "Status": "Status",
@@ -103,11 +102,8 @@
   "OrderSummary": "Order Summary",
   "OrderReceived": "Order Received",
   "orderreceivedtext": "Thank you. Your order has been received.",
-  "OrderNumber": "Order Number",
-  "Orderdate": "Order date",
   "Totalquantity": "Total quantity",
   "OrderDetails": "Order Details",
-  "Shipping": "Shipping",
   "Continue": "Continue",
   "Home": "Home",
   "UrbanKitchen": "Urban Kitchen",
@@ -136,6 +132,5 @@
   "TermsConditions": "Terms & Conditions",
   "IAgree": "I agree",
 
-  "List": "Lijst",
-  "Home": "Huis"
+  "List": "Lijst"
 }
