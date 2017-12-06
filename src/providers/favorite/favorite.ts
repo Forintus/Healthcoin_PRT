@@ -26,23 +26,18 @@ export class FavoriteProvider {
   //   return this.favorite;
   // }
 
-  getFavorite(): Promise<Product> {
+  getFavorites(): Promise<Product> {
     return this.storage.ready()
-      .then(() => this.storage.get('favorite'))
-      .then((json: string) => {
-        if (!json || json == null || json == undefined || json.length == 0) throw "No favorite.";
-        return json;
-      })
+      .then(() => this.storage.get('favorites'))
       .then((json: string) => JSON.parse(json))
       .catch((error: string) => {
-        console.log(error, "Not returning a favorite..");
+        console.log(error, "Not returning any favorites..");
       });
   }
 
-  setFavorite(product: Product): Promise<Product> {
+  setFavorites(products: Product[]): Promise<Product[]> {
     return this.storage.ready()
-      // .then(() => console.log("Saving Favorite to storage"))
-      .then(() => this.storage.set('favorite', JSON.stringify(product)))
-      .catch(() => console.log("Something's wrong"));
+      .then(() => this.storage.set('favorites', JSON.stringify(products)))
+      .catch(() => console.log("Favorites not saved to storage."));
   }
 }

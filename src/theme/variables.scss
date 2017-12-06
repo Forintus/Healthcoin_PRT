@@ -71,7 +71,9 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "healthcoin.theme";
+@import "ionic.theme.default";
+
+// @import "healthcoin.theme";
 @import "theme.light";
 @import "theme.dark";
 
