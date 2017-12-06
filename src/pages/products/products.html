@@ -17,8 +17,8 @@
 
 
 <ion-content>
-  <ion-list radio-group [(ngModel)]="selectedFavorite" (ionChange)="favoriteChanged($event)">
-    <ion-item *ngFor="let product of products">
+  <ion-list radio-group [(ngModel)]="favorite" (ionChange)="favoriteChanged($event)">
+    <ion-item *ngFor="let product of products" (tap)="onProductTap($event, product)">
         <ion-label>{{ product.name }}</ion-label>
         <ion-radio [value]="product.name"></ion-radio>
       </ion-item>

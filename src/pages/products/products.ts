@@ -18,24 +18,32 @@ import { FavoriteProvider } from '../../providers/favorite/favorite';
 export class ProductsPage {
 
   private products: Product[];
+  private favorite: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private productsProvider: ProductsProvider,
-  private favoriteProvider: FavoriteProvider) {
+    private favoriteProvider: FavoriteProvider) {
 
     this.productsProvider.getProductsFromStorage()
-    .then((products)=> {
-      this.products = products;
-    });
+      .then((products) => this.products = products)
+      .then(() => this.favoriteProvider.getFavorite())
+      .then((favorite) => this.favorite = favorite.name)
+      .catch((error) => console.log('No favorite returned'));
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductsPage');
   }
 
-  favoriteChanged(favorite) {
+  favoriteChanged(favorite: Product) {
 
-    // console.log(favorite);
+    console.log(favorite);
+    if (!favorite) return;
+  }
 
-    this.favoriteProvider.setFavorite(favorite);
+  onProductTap(event, product) {
+    console.log(product);
+
+    this.favoriteProvider.setFavorite(product)
+      .then((product) => console.log("Favorite is saved"));
   }
 }

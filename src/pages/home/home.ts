@@ -16,7 +16,7 @@ import { FavoriteProvider } from '../../providers/favorite/favorite';
 })
 export class HomePage {
 
-  private selectedFavorite: string;
+  private favorite: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private favoriteProvider: FavoriteProvider) {
   }
@@ -25,9 +25,6 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
 
     this.favoriteProvider.getFavorite()
-    .subscribe(favorite => {
-      this.selectedFavorite = favorite;
-    })
-    .unsubscribe();
+      .then(favorite => this.favorite = favorite.name);
   }
 }
