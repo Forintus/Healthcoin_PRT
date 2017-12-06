@@ -10,7 +10,9 @@ import { CartItemsProvider } from '../../providers/cartitems/cartitems';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  priority: 'high'
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',

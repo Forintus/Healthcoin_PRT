@@ -16,8 +16,8 @@
 
 </ion-content>
 
-<!-- <ion-footer *ngIf="cartitems.length > 0">
-  <button ion-button full color="primary" no-padding no-margin text-uppercase [disabled]='disableSubmit' 
-    (tap)="goCheckout()">{{ Checkout | translate }}
+<ion-footer *ngIf="orderSummary">
+  <button ion-button full color="primary" no-padding no-margin text-uppercase (tap)="onConfirm()">
+    {{"Confirm" | translate}}
   </button>
-</ion-footer> -->
+</ion-footer>

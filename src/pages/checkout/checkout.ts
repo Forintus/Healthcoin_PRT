@@ -15,6 +15,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CheckoutPage {
 
+  private orderSummary: boolean = true;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -22,4 +24,7 @@ export class CheckoutPage {
     console.log('ionViewDidLoad CheckoutPage');
   }
 
+  onConfirm() {
+    console.log("onConfirm");
+  }
 }
