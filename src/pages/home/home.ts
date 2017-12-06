@@ -21,13 +21,12 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private cartItemsProvider: CartItemsProvider) {
     this.cartitems = [];
+    this.cartItemsProvider.getCart()
+      .then(cartitems => this.cartitems = cartitems);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-
-    this.cartItemsProvider.getCart()
-      .then(cartitems => this.cartitems = cartitems);
   }
 
   showCart() {

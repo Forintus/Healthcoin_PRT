@@ -19,16 +19,15 @@ export class SettingsPage {
   private selectedTheme: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private settingsProvider: SettingsProvider) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
-
     this.settingsProvider.getActiveTheme()
       .subscribe(theme => {
         this.selectedTheme = theme;
       })
       .unsubscribe();
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SettingsPage');
   }
 
   themeChanged(theme) {

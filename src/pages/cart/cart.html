@@ -20,10 +20,8 @@
   <ion-item *ngIf="cartitems.length > 0">{{ cartitems[0].name }}</ion-item>
 </ion-content>
 
-<ion-footer>
-  <ion-footer *ngIf="cartitems.length > 0">
-    <button ion-button full color="primary" no-padding no-margin text-uppercase [disabled]='disableSubmit' 
+<ion-footer *ngIf="cartitems.length > 0">
+  <button ion-button full color="primary" no-padding no-margin text-uppercase [disabled]='disableSubmit' 
     (click)="goCheckout()">{{ Checkout | translate }}
-    </button>
-  </ion-footer>
+  </button>
 </ion-footer>
