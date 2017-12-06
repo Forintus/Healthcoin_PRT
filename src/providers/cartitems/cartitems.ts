@@ -21,9 +21,7 @@ export class CartItemsProvider {
     return this.storage.ready()
       .then(() => this.storage.get('cartitems'))
       .then((json: string) => JSON.parse(json))
-      .catch((error: string) => {
-        console.log(error, "Not returning any cartitem..");
-      });
+      .catch((error: string) =>  console.log(error, "Not returning any cartitem.."));
   }
 
   addToCart(product: Product): Promise<Product[]> {

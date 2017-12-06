@@ -46,7 +46,8 @@ export class ProductsPage {
     console.log(product);
 
     this.favoritesProvider.addToFavorites(product)
-      .then((products) => console.log("Favorites is saved"))
-      .then(() => this.cartItemsProvider.addToCart(product));
-  }
+      .then((products) => console.log("Favorites are saved"))
+      .then(() => this.cartItemsProvider.addToCart(product))
+      .then((products) => console.log("Cartitems are saved"));
+    }
 }

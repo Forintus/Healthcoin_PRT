@@ -30,9 +30,7 @@ export class FavoritesProvider {
     return this.storage.ready()
       .then(() => this.storage.get('favorites'))
       .then((json: string) => JSON.parse(json))
-      .catch((error: string) => {
-        console.log(error, "Not returning any favorites..");
-      });
+      .catch((error: string) => console.log(error, "Not returning any favorites.."));
   }
 
   addToFavorites(product: Product): Promise<Product[]> {

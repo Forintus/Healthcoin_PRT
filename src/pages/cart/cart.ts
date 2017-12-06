@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CartItemsProvider } from '../../providers/cartitems/cartitems';
 
 /**
  * Generated class for the CartPage page.
@@ -15,11 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private cartitem: Product;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private cartItemsProvider: CartItemsProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
+
+    this.cartItemsProvider.getCart()
+    .then(cartitems => this.cartitem = cartitems[0].name);
   }
 
 }
