@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FavoriteProvider } from '../../providers/favorite/favorite';
+import { FavoritesProvider } from '../../providers/favorites/favorites';
 
 /**
  * Generated class for the HomePage page.
@@ -18,13 +18,13 @@ export class HomePage {
 
   private favorite: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private favoriteProvider: FavoriteProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private favoriteProvider: FavoritesProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
 
-    this.favoriteProvider.getFavorite()
-      .then(favorite => this.favorite = favorite.name);
+    this.favoriteProvider.getFavorites()
+      .then(favorites => this.favorite = favorites[0].name);
   }
 }

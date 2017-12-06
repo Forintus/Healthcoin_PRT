@@ -13,7 +13,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SettingsProvider } from '../providers/settings/settings';
 import { ProductsProvider } from '../providers/products/products';
-import { FavoriteProvider } from '../providers/favorite/favorite';
+import { FavoritesProvider } from '../providers/favorites/favorites';
+import { CartItemsProvider } from '../providers/cartitems/cartitems';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,7 +47,8 @@ export function createTranslateLoader(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SettingsProvider,
     ProductsProvider,
-    FavoriteProvider
+    FavoritesProvider,
+    CartItemsProvider
   ]
 })
 export class AppModule {}

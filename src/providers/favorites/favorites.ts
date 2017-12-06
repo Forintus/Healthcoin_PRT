@@ -9,9 +9,9 @@ import { Storage } from '@ionic/storage/dist/storage';
   and Angular DI.
 */
 @Injectable()
-export class FavoriteProvider {
+export class FavoritesProvider {
 
-  private favorite: Product;
+  private favorites: Product[];
 
   constructor(public http: HttpClient, private storage: Storage) {
     console.log('Constructing Favorite Provider');
@@ -35,9 +35,13 @@ export class FavoriteProvider {
       });
   }
 
-  setFavorites(products: Product[]): Promise<Product[]> {
+  addToFavorites(product: Product): Promise<Product[]> {
+    this.favorites = [];
+    this.favorites.length = 0;
+    this.favorites.push(product);
+
     return this.storage.ready()
-      .then(() => this.storage.set('favorites', JSON.stringify(products)))
+      .then(() => this.storage.set('favorites', JSON.stringify(this.favorites)))
       .catch(() => console.log("Favorites not saved to storage."));
   }
 }
