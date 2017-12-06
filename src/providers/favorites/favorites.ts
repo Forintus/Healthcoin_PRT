@@ -26,7 +26,7 @@ export class FavoritesProvider {
   //   return this.favorite;
   // }
 
-  getFavorites(): Promise<Product> {
+  getFavorites(): Promise<Product[]> {
     return this.storage.ready()
       .then(() => this.storage.get('favorites'))
       .then((json: string) => JSON.parse(json))

@@ -76,7 +76,7 @@
   "Status": "Status",
   "Quantity": "Quantity",
   "ViewDetails": "View Details",
-  "Cart": "Winkelwagen",
+  "Cart": "Spaardoel",
   "Yourcartisempty!": "Your cart is empty!",
   "emptycartrestuarent": "Add some delicious food available on our menu to checkout.",
   "BrowseOurMenu": "Browse Our Menu",
@@ -115,7 +115,7 @@
   "Description": "Description",
   "ShowReviews": "Show Reviews",
   "Reviews": "Reviews",
-  "Products": "Producten",
+  "Products": "Cadeaus",
   "Categories": "Categories",
   "Add": "Add",
   "resetting...": "resetting...",
@@ -131,6 +131,5 @@
   "Saving...": "Saving...",
   "TermsConditions": "Terms & Conditions",
   "IAgree": "I agree",
-
   "List": "Lijst"
 }

@@ -12,7 +12,7 @@ import { SettingsProvider } from '../providers/settings/settings';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'ProductsPage';
+  rootPage: any = 'HomePage';
   selectedTheme: string;
   pages: Array<{title: string, icon: string, component: any}>;
 
@@ -28,7 +28,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', icon: 'hc-healthcoin', component: 'HomePage' },
-      { title: 'Products', icon: 'hc-store', component: 'ProductsPage' },
+      { title: 'Products', icon: 'hc-gift2', component: 'ProductsPage' },
       // { title: 'Spaardoel', icon: 'hc-store', component: 'FavoritesPage' },
       { title: 'Cart', icon: 'hc-piggy-bank', component: 'CartPage' },
       { title: 'Settings', icon: 'hc-cog2', component: 'SettingsPage' }

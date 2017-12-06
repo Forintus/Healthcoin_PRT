@@ -16,16 +16,23 @@ import { CartItemsProvider } from '../../providers/cartitems/cartitems';
 })
 export class CartPage {
 
-  private cartitem: Product;
+  private cartitems: Product[];
+  private Checkout: string;  
+  private disableSubmit: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private cartItemsProvider: CartItemsProvider) {
+    this.cartitems = [];
+    this.Checkout = 'Checkout';
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
 
     this.cartItemsProvider.getCart()
-    .then(cartitems => this.cartitem = cartitems[0].name);
+    .then(cartitems => this.cartitems = cartitems);
   }
 
+  goCheckout() {
+    this.navCtrl.push('CheckoutPage');
+  }
 }

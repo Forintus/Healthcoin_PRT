@@ -11,11 +11,15 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="showCart()">
+        <ion-icon name="hc-piggy-bank"></ion-icon>
+        <ion-badge item-end color="">{{ cartitems.length }}</ion-badge>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-  {{ favorite }}
+  <ion-item *ngIf="cartitems.length > 0">{{ cartitems[0].name }}</ion-item>
 </ion-content>

@@ -17,7 +17,7 @@ export class CartItemsProvider {
     console.log('Constructing Cart Provider');
   }
 
-  getCart(): Promise<Product> {
+  getCart(): Promise<Product[]> {
     return this.storage.ready()
       .then(() => this.storage.get('cartitems'))
       .then((json: string) => JSON.parse(json))
