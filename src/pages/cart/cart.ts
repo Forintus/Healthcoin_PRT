@@ -23,7 +23,8 @@ export class CartPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private cartItemsProvider: CartItemsProvider) {
     this.cartitems = [];
     this.Checkout = 'Checkout';
-
+    this.disableSubmit = false;
+    
     this.cartItemsProvider.getCart()
       .then(cartitems => this.cartitems = cartitems);
   }
@@ -33,6 +34,6 @@ export class CartPage {
   }
 
   goCheckout() {
-    this.navCtrl.push('CheckoutPage');
+    this.navCtrl.push('CheckoutPage', { cart: this.cartitems });
   }
 }

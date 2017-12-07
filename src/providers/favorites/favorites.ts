@@ -42,4 +42,13 @@ export class FavoritesProvider {
       .then(() => this.storage.set('favorites', JSON.stringify(this.favorites)))
       .catch(() => console.log("Favorites not saved to storage."));
   }
+
+  deleteFavorites(): Promise<Product[]> {
+    this.favorites = [];
+    this.favorites.length = 0;
+    
+    return this.storage.ready()
+      .then(() => this.storage.set('favorites', JSON.stringify(this.favorites)))
+      .catch(() => console.log("Favorites not removed from storage."));
+  }
 }

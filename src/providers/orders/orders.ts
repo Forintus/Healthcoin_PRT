@@ -12,23 +12,25 @@ import { Storage } from '@ionic/storage/dist/storage';
 export class OrdersProvider {
 
   private orders: Product[];
-  
+
   constructor(public http: HttpClient, private storage: Storage) {
     console.log('Constructing Orders Provider');
+
+    this.getOrders()
+      .then((orders) => this.orders = orders);
   }
 
-  getCart(): Promise<Product[]> {
+  getOrders(): Promise<Product[]> {
     return this.storage.ready()
       .then(() => this.storage.get('orders'))
       .then((json: string) => JSON.parse(json))
-      .catch((error: string) =>  console.log(error, "Not returning any orders.."));
+      .catch((error: string) => console.log(error, "Not returning any orders.."));
   }
 
-  addToCart(product: Product): Promise<Product[]> {
-    this.orders = [];
-    this.orders.length = 0;
+  addToOrders(product: Product): Promise<Product[]> {
+
     this.orders.push(product);
-    
+
     return this.storage.ready()
       .then(() => this.storage.set('orders', JSON.stringify(this.orders)))
       .catch(() => console.log("Orders not saved to storage."));

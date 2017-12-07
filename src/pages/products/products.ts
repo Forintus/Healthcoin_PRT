@@ -19,6 +19,7 @@ import { CartItemsProvider } from '../../providers/cartitems/cartitems';
 export class ProductsPage {
 
   private products: Product[];
+  private cartitems: Product[] = [];  
   private favorite: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private productsProvider: ProductsProvider,
@@ -28,6 +29,8 @@ export class ProductsPage {
       .then((products) => this.products = products)
       .then(() => this.favoritesProvider.getFavorites())
       .then((favorites) => this.favorite = favorites[0].name)
+      .then(() => this.cartItemsProvider.getCart())
+      .then(cartitems => this.cartitems = cartitems)
       .catch((error) => console.log('No favorite returned'));
   }
 
@@ -49,5 +52,9 @@ export class ProductsPage {
       .then((products) => console.log("Favorites are saved"))
       .then(() => this.cartItemsProvider.addToCart(product))
       .then((products) => console.log("Cartitems are saved"));
-    }
+  }
+
+  showCart() {
+    this.navCtrl.push('CartPage');
+  }
 }

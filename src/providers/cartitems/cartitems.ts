@@ -33,4 +33,13 @@ export class CartItemsProvider {
       .then(() => this.storage.set('cartitems', JSON.stringify(this.cartitems)))
       .catch(() => console.log("Cartitems not saved to storage."));
   }
+
+  emptyCart(): Promise<Product[]> {
+    this.cartitems = [];
+    this.cartitems.length = 0;
+    
+    return this.storage.ready()
+      .then(() => this.storage.set('cartitems', JSON.stringify(this.cartitems)))
+      .catch(() => console.log("Cartitems not removed from storage."));
+  }
 }

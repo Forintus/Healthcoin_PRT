@@ -31,6 +31,7 @@ export class MyApp {
       { title: 'Products', icon: 'hc-gift2', component: 'ProductsPage' },
       // { title: 'Spaardoel', icon: 'hc-store', component: 'FavoritesPage' },
       { title: 'Cart', icon: 'hc-piggy-bank', component: 'CartPage' },
+      { title: 'Orders', icon: 'hc-truck', component: 'OrdersPage' },
       { title: 'Settings', icon: 'hc-cog2', component: 'SettingsPage' }
     ];
   }
