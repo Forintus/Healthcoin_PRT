@@ -13,7 +13,6 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SettingsProvider } from '../providers/settings/settings';
 import { ProductsProvider } from '../providers/products/products';
-import { FavoritesProvider } from '../providers/favorites/favorites';
 import { CartItemsProvider } from '../providers/cartitems/cartitems';
 import { OrdersProvider } from '../providers/orders/orders';
 
@@ -52,7 +51,6 @@ export function createTranslateLoader(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SettingsProvider,
     ProductsProvider,
-    FavoritesProvider,
     CartItemsProvider,
     OrdersProvider
   ]

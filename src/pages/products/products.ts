@@ -1,9 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductsProvider } from '../../providers/products/products';
-// import { FavoritesProvider } from '../../providers/favorites/favorites';
 import { CartItemsProvider } from '../../providers/cartitems/cartitems';
-import { FavoritesProvider } from '../../providers/favorites/favorites';
 
 /**
  * Generated class for the ProductsPage page.
