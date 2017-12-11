@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage/dist/storage';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 /*
   Generated class for the CartProvider provider.
@@ -12,34 +13,63 @@ import { Storage } from '@ionic/storage/dist/storage';
 export class CartItemsProvider {
 
   private cartitems: Product[];
-  
+  private cartSubject: ReplaySubject<Product[]>;
+
   constructor(public http: HttpClient, private storage: Storage) {
     console.log('Constructing Cart Provider');
+
+    this.cartSubject = new ReplaySubject<Product[]>();
+
+    this.getCartFromStorage()
+      .then((cartitems) => {
+        this.cartitems = cartitems;
+        this.cartSubject.next(this.cartitems)
+      });
   }
 
-  getCart(): Promise<Product[]> {
+  getCartFromStorage(): Promise<Product[]> {
     return this.storage.ready()
       .then(() => this.storage.get('cartitems'))
       .then((json: string) => JSON.parse(json))
-      .catch((error: string) =>  console.log(error, "Not returning any cartitem.."));
+      .catch((error: string) => console.log(error, "Not returning any cartitem..."));
   }
 
-  addToCart(product: Product): Promise<Product[]> {
-    this.cartitems = [];
-    this.cartitems.length = 0;
-    this.cartitems.push(product);
-    
-    return this.storage.ready()
-      .then(() => this.storage.set('cartitems', JSON.stringify(this.cartitems)))
-      .catch(() => console.log("Cartitems not saved to storage."));
+  getCart(): ReplaySubject<Product[]> {
+    return this.cartSubject;
   }
 
-  emptyCart(): Promise<Product[]> {
+  addToCart(product: Product) {
+    let index: number = this.cartitems.findIndex((cartitem) => cartitem.name == product.name);
+
+    index < 0 ? this.cartitems.push(product) : this.cartitems[index].units += 1;
+
+    this.setCart(this.cartitems)
+      .then(() => this.cartSubject.next(this.cartitems));
+  }
+
+  deleteFromCart(product: Product) {
+    let index: number = this.cartitems.findIndex((cartitem) => cartitem.name == product.name);
+
+    if (index < 0) return;
+
+    product.units > 1 ? this.cartitems[index].units -= 1 : this.cartitems.splice(index, 1);
+
+    this.setCart(this.cartitems)
+      .then(() => this.cartSubject.next(this.cartitems));
+  }
+
+  clearCart() {
     this.cartitems = [];
     this.cartitems.length = 0;
-    
+
+    this.setCart(this.cartitems)
+      .then(() => this.cartSubject.next(this.cartitems));
+  }
+
+  setCart(products: Product[]): Promise<Product[]> {
+
     return this.storage.ready()
-      .then(() => this.storage.set('cartitems', JSON.stringify(this.cartitems)))
-      .catch(() => console.log("Cartitems not removed from storage."));
+      .then(() => this.storage.set('cartitems', JSON.stringify(products)))
+      .catch((error: string) => console.log(error, "Cartitems not saved to storage."));
   }
 }

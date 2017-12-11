@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FavoritesProvider } from '../../providers/favorites/favorites';
 import { CartItemsProvider } from '../../providers/cartitems/cartitems';
 
 /**
@@ -21,10 +20,11 @@ export class HomePage {
 
   private cartitems: Product[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private cartItemsProvider: CartItemsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private cartProvider: CartItemsProvider) {
     this.cartitems = [];
-    this.cartItemsProvider.getCart()
-      .then(cartitems => this.cartitems = cartitems);
+    
+    this.cartProvider.getCart()
+      .subscribe(cartitems => this.cartitems = cartitems);
   }
 
   ionViewDidLoad() {

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage/dist/storage';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 /*
   Generated class for the OrdersProvider provider.
@@ -12,27 +13,33 @@ import { Storage } from '@ionic/storage/dist/storage';
 export class OrdersProvider {
 
   private orders: Product[];
+  private ordersSubject: ReplaySubject<Product[]>;
 
   constructor(public http: HttpClient, private storage: Storage) {
     console.log('Constructing Orders Provider');
 
-    this.getOrders()
-      .then((orders) => this.orders = orders);
+    this.ordersSubject = new ReplaySubject<Product[]>();
+
+    this.getOrdersFromStorage()
+      .then((orders) => this.ordersSubject.next(orders));
   }
 
-  getOrders(): Promise<Product[]> {
+  getOrdersFromStorage(): Promise<Product[]> {
     return this.storage.ready()
       .then(() => this.storage.get('orders'))
       .then((json: string) => JSON.parse(json))
       .catch((error: string) => console.log(error, "Not returning any orders.."));
   }
 
-  addToOrders(product: Product): Promise<Product[]> {
+  getOrders(): ReplaySubject<Product[]> {
+    return this.ordersSubject;
+  }
 
-    this.orders.push(product);
+  setOrders(products: Product[]): Promise<Product[]> {
+    this.ordersSubject.next(products);
 
     return this.storage.ready()
-      .then(() => this.storage.set('orders', JSON.stringify(this.orders)))
-      .catch(() => console.log("Orders not saved to storage."));
+      .then(() => this.storage.set('orders', JSON.stringify(products)))
+      .catch((error: string) => console.log(error, "Orders not saved to storage."));
   }
 }

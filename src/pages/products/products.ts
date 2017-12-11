@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductsProvider } from '../../providers/products/products';
-import { FavoritesProvider } from '../../providers/favorites/favorites';
+// import { FavoritesProvider } from '../../providers/favorites/favorites';
 import { CartItemsProvider } from '../../providers/cartitems/cartitems';
+import { FavoritesProvider } from '../../providers/favorites/favorites';
 
 /**
  * Generated class for the ProductsPage page.
@@ -16,45 +17,42 @@ import { CartItemsProvider } from '../../providers/cartitems/cartitems';
   selector: 'page-products',
   templateUrl: 'products.html',
 })
-export class ProductsPage {
+export class ProductsPage implements OnDestroy {
 
   private products: Product[];
-  private cartitems: Product[] = [];  
-  private favorite: string;
+  private cartitems: Product[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private productsProvider: ProductsProvider,
     private favoritesProvider: FavoritesProvider, private cartItemsProvider: CartItemsProvider) {
 
-    this.productsProvider.getProductsFromStorage()
+    this.products = [];
+    this.cartitems = [];
+
+    this.productsProvider.getProducts()
       .then((products) => this.products = products)
-      .then(() => this.favoritesProvider.getFavorites())
-      .then((favorites) => this.favorite = favorites[0].name)
-      .then(() => this.cartItemsProvider.getCart())
-      .then(cartitems => this.cartitems = cartitems)
-      .catch((error) => console.log('No favorite returned'));
+      .then((products) => this.favoritesProvider.setFavorites(products));
+
+    this.cartItemsProvider.getCart()
+      .subscribe((products) => this.cartitems = products);
+  }
+
+  ngOnDestroy() {
+    // UNSUBSCRIBE!!
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductsPage');
   }
 
-  favoriteChanged(favorite: Product) {
-
-    if (!favorite) return;
-
-    console.log(favorite);
+  onViewProduct(product: Product) {
+    this.navCtrl.push('ProductPage', { product: product });
   }
 
-  onProductTap(event, product: Product) {
-    console.log(product);
-
-    this.favoritesProvider.addToFavorites(product)
-      .then((products) => console.log("Favorites are saved"))
-      .then(() => this.cartItemsProvider.addToCart(product))
-      .then((products) => console.log("Cartitems are saved"));
+  addToCart(product: Product) {
+    this.cartItemsProvider.addToCart(product);
   }
 
-  showCart() {
+  onShowCart() {
     this.navCtrl.push('CartPage');
   }
 }

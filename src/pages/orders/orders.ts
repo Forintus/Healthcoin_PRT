@@ -16,17 +16,27 @@ import { OrdersProvider } from '../../providers/orders/orders';
 })
 export class OrdersPage {
 
-  private products: Product[];
+  private products: Product[] = [];
+  private total: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private ordersProvider: OrdersProvider) {
 
     this.ordersProvider.getOrders()
-    .then((products) => this.products = products)
-    .catch((error) => console.log('No favorite returned'));
-    }
+      .subscribe((products) => {
+        this.products = products;
+
+        this.total = this.products
+          .map((product) => product.coins * product.units)
+          .reduce((total, value) => { return total + value }, 0);
+      });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrdersPage');
   }
 
+  clearOrders() {
+    console.log("clearOrders");
+    this.ordersProvider.setOrders([]);
+  }
 }

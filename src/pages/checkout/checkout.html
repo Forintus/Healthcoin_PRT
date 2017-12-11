@@ -12,12 +12,25 @@
 
 </ion-header>
 
-<ion-content padding>
-  <ion-item *ngIf="products.length > 0">{{ products[0].name }}</ion-item>
+<ion-content no-padding>
+  <ion-list>
+    <ion-item #item *ngFor="let product of products" >
+      <ion-label (click)="onViewProduct(product);">{{ product.name }}</ion-label>
+      <ion-note item-end>{{ product.units }}
+      </ion-note>
+      <ion-note item-end>{{ product.units * product.coins | number }}
+      </ion-note>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
-<ion-footer *ngIf="orderSummary">
-  <button ion-button full color="primary" no-padding no-margin text-uppercase (tap)="onConfirm()">
-    {{"Confirm" | translate}}
-  </button>
+<ion-footer *ngIf="products.length > 0">
+  <ion-row padding>
+    <ion-col no-padding>
+      <button ion-button color="primary" block outline (click)="onConfirm()">Confirm</button>
+    </ion-col>
+    <ion-col no-padding>
+      <button ion-button color="primary" block clear>TOTAL {{ currency_symbol }} {{ total | number }}</button>
+    </ion-col>
+  </ion-row>  
 </ion-footer>

@@ -20,18 +20,25 @@ import { FavoritesProvider } from '../../providers/favorites/favorites';
 export class CheckoutPage {
 
   private products: Product[];
+  private orders: Product[] = [];
   private orderSummary: boolean;
+  private total: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController,
-    private cartProvider: CartItemsProvider, private ordersProvider: OrdersProvider, private favoritesProvider: FavoritesProvider) {
-
-    console.log(this.navParams.data['cart']);
+    private cartProvider: CartItemsProvider, private ordersProvider: OrdersProvider) {
 
     this.products = this.navParams.data['cart']
       .map((product) => product as Product);
 
-    this.orderSummary = true;
+    this.total = this.products
+      .map((product) => product.coins * product.units)
+      .reduce((total, value) => { return total + value }, 0);
 
+    this.ordersProvider.getOrders()
+      .subscribe((orders) => {
+        this.orderSummary = true
+        this.orders = orders;
+      });
   }
 
   ionViewDidLoad() {
@@ -50,15 +57,11 @@ export class CheckoutPage {
     });
 
     loading.present();
-    this.products.forEach((product) => {
-      console.log(product);
 
-      this.ordersProvider.addToOrders(product);
-      // this.cartProvider.removeCartItem(product);
-    });
+    let confirmedOrders = this.orders.concat(this.products);
 
-    this.cartProvider.emptyCart();
-    this.favoritesProvider.deleteFavorites();
+    this.ordersProvider.setOrders(confirmedOrders)
+      .then(() => this.cartProvider.clearCart());
 
     setTimeout(() => {
       this.navCtrl.setRoot('ConfirmPage', {}, {

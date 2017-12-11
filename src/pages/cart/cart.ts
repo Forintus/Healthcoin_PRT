@@ -16,24 +16,42 @@ import { CartItemsProvider } from '../../providers/cartitems/cartitems';
 })
 export class CartPage {
 
-  private cartitems: Product[];
+  private products: Product[];
   private Checkout: string;
   private disableSubmit: boolean = false;
+  private total: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private cartItemsProvider: CartItemsProvider) {
-    this.cartitems = [];
+    this.products = [];
     this.Checkout = 'Checkout';
     this.disableSubmit = false;
-    
+
     this.cartItemsProvider.getCart()
-      .then(cartitems => this.cartitems = cartitems);
+      .subscribe((cartitems) => {
+        this.products = cartitems;
+        this.total = this.products
+          .map((product) => product.coins * product.units)
+          .reduce((total, value) => { return total + value }, 0);
+      });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
   }
 
+  addToCart(product: Product) {
+    this.cartItemsProvider.addToCart(product);
+  }
+
+  deleteFromCart(product: Product) {
+    this.cartItemsProvider.deleteFromCart(product);
+  }
+
   goCheckout() {
-    this.navCtrl.push('CheckoutPage', { cart: this.cartitems });
+    this.navCtrl.push('CheckoutPage', { cart: this.products });
+  }
+
+  onViewProduct(product: Product) {
+    this.navCtrl.push('ProductPage', { product: product });
   }
 }

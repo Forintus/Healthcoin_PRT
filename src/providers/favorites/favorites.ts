@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage/dist/storage';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 /*
   Generated class for the FavoriteProvider provider.
@@ -11,44 +12,44 @@ import { Storage } from '@ionic/storage/dist/storage';
 @Injectable()
 export class FavoritesProvider {
 
-  private favorites: Product[];
+  // private favorites: Product[];
+  private favoritesSubject: ReplaySubject<Product[]>;
 
   constructor(public http: HttpClient, private storage: Storage) {
     console.log('Constructing Favorite Provider');
 
+    this.favoritesSubject = new ReplaySubject<Product[]>();
   }
 
-  // setFavorite(product: Product) {
-  //   this.favorite = product;
+  getFavorites(): ReplaySubject<Product[]> {
+    return this.favoritesSubject;
+  }
+
+  setFavorites(products: Product[]) {
+    let favorites = products
+      .filter((product) => {
+        return product.favorite;
+      });
+
+    this.favoritesSubject.next(favorites);
+  }
+
+  // addToFavorites(product: Product): Promise<Product[]> {
+  //   this.favorites = [];
+  //   this.favorites.length = 0;
+  //   this.favorites.push(product);
+
+  //   return this.storage.ready()
+  //     .then(() => this.storage.set('favorites', JSON.stringify(this.favorites)))
+  //     .catch(() => console.log("Favorites not saved to storage."));
   // }
 
-  // getFavorite() {
-  //   return this.favorite;
+  // deleteFavorites(): Promise<Product[]> {
+  //   this.favorites = [];
+  //   this.favorites.length = 0;
+
+  //   return this.storage.ready()
+  //     .then(() => this.storage.set('favorites', JSON.stringify(this.favorites)))
+  //     .catch(() => console.log("Favorites not removed from storage."));
   // }
-
-  getFavorites(): Promise<Product[]> {
-    return this.storage.ready()
-      .then(() => this.storage.get('favorites'))
-      .then((json: string) => JSON.parse(json))
-      .catch((error: string) => console.log(error, "Not returning any favorites.."));
-  }
-
-  addToFavorites(product: Product): Promise<Product[]> {
-    this.favorites = [];
-    this.favorites.length = 0;
-    this.favorites.push(product);
-
-    return this.storage.ready()
-      .then(() => this.storage.set('favorites', JSON.stringify(this.favorites)))
-      .catch(() => console.log("Favorites not saved to storage."));
-  }
-
-  deleteFavorites(): Promise<Product[]> {
-    this.favorites = [];
-    this.favorites.length = 0;
-    
-    return this.storage.ready()
-      .then(() => this.storage.set('favorites', JSON.stringify(this.favorites)))
-      .catch(() => console.log("Favorites not removed from storage."));
-  }
 }

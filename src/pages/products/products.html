@@ -11,19 +11,22 @@
     </button>
     <ion-title>{{ 'Products' | translate }}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (tap)="showCart()">
+      <button ion-button icon-only *ngIf="cartitems.length > 0" (click)="onShowCart()">
         <ion-icon name="hc-piggy-bank"></ion-icon>
-        <ion-badge item-end color="">{{ cartitems.length }}</ion-badge>
+        <ion-badge item-end color="secondary">{{cartitems.length}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list radio-group [(ngModel)]="favorite" (ionChange)="favoriteChanged($event)">
-    <ion-item *ngFor="let product of products" (tap)="onProductTap($event, product)">
-      <ion-label>{{ product.name }}</ion-label>
-      <ion-radio [value]="product.name"></ion-radio>
+  <ion-list>
+    <ion-item #item *ngFor="let product of products" >
+      <ion-label (click)="onViewProduct(product);">{{ product.name }}</ion-label>
+      <button ion-button icon-only no-margin item-right clear color="" (click)="addToCart(product)">
+        <ion-icon name="add-circle-outline">
+        </ion-icon>
+      </button>
     </ion-item>
   </ion-list>
 </ion-content>

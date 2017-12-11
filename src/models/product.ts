@@ -3,5 +3,7 @@ interface Product {
     price: number,
     discount: number,
     coins: number,
-    image: string
+    image: string,
+    favorite: boolean,
+    units?: number
 }

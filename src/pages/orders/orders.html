@@ -5,21 +5,37 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{ 'Orders' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="clearOrders()">
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content no-padding>
   <ion-list>
-    <ion-item *ngFor="let product of products" (tap)="onProductTap($event, product)">
-      <ion-label>{{ product.name }}</ion-label>
+    <ion-item #item *ngFor="let product of products" >
+      <ion-label (click)="onViewProduct(product);">{{ product.name }}</ion-label>
+      <ion-note item-end>{{ product.units }}
+      </ion-note>
+      <ion-note item-end>{{ product.units * product.coins | number }}
+      </ion-note>
     </ion-item>
   </ion-list>
 </ion-content>
+
+<ion-footer *ngIf="products.length > 0">
+  <ion-row padding>
+    <!-- <ion-col no-padding>
+      <button ion-button color="primary" block outline (click)="onConfirm()">Confirm</button>
+    </ion-col> -->
+    <ion-col no-padding>
+      <button ion-button color="primary" block clear>TOTAL {{ currency_symbol }} {{ total | number }}</button>
+    </ion-col>
+  </ion-row>  
+</ion-footer>
