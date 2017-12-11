@@ -37,6 +37,6 @@ export class OrdersPage {
 
   clearOrders() {
     console.log("clearOrders");
-    this.ordersProvider.setOrders([]);
+    this.ordersProvider.clearOrders();
   }
 }

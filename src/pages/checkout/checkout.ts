@@ -20,7 +20,7 @@ import { FavoritesProvider } from '../../providers/favorites/favorites';
 export class CheckoutPage {
 
   private products: Product[];
-  private orders: Product[] = [];
+  // private orders: Product[] = [];
   private orderSummary: boolean;
   private total: number;
 
@@ -34,11 +34,11 @@ export class CheckoutPage {
       .map((product) => product.coins * product.units)
       .reduce((total, value) => { return total + value }, 0);
 
-    this.ordersProvider.getOrders()
-      .subscribe((orders) => {
-        this.orderSummary = true
-        this.orders = orders;
-      });
+    // this.ordersProvider.getOrders()
+    //   .subscribe((orders) => {
+    //     this.orderSummary = true
+    //     this.orders = orders;
+    //   });
   }
 
   ionViewDidLoad() {
@@ -58,15 +58,15 @@ export class CheckoutPage {
 
     loading.present();
 
-    let confirmedOrders = this.orders.concat(this.products);
+    // let confirmedOrders = this.orders.concat(this.products);
 
-    this.ordersProvider.setOrders(confirmedOrders)
+    this.ordersProvider.addToOrders(this.products)
       .then(() => this.cartProvider.clearCart());
 
     setTimeout(() => {
       this.navCtrl.setRoot('ConfirmPage', {}, {
         animate: true,
-        direction: 'forward' // or 'back'
+        direction: 'forward'
       });
       loading.dismiss();
     }, 1000);

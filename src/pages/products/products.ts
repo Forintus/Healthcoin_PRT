@@ -23,14 +23,14 @@ export class ProductsPage implements OnDestroy {
   private cartitems: Product[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private productsProvider: ProductsProvider,
-    private favoritesProvider: FavoritesProvider, private cartItemsProvider: CartItemsProvider) {
+    private cartItemsProvider: CartItemsProvider) {
 
     this.products = [];
     this.cartitems = [];
 
     this.productsProvider.getProducts()
       .then((products) => this.products = products)
-      .then((products) => this.favoritesProvider.setFavorites(products));
+      .then((products) => this.productsProvider.setProducts(products));
 
     this.cartItemsProvider.getCart()
       .subscribe((products) => this.cartitems = products);

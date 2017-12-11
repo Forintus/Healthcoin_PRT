@@ -23,7 +23,6 @@ export class ConfirmPage {
   }
 
   onShowProducts() {
-    console.log("onConfirm");
     this.navCtrl.setRoot('ProductsPage', {}, {
       animate: true,
       direction: 'back'

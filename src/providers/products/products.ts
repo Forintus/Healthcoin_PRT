@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage/dist/storage';
 import { FavoritesProvider } from '../favorites/favorites';
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/operator/toPromise';
 
 /*
   Generated class for the ProductsProvider provider.
@@ -14,7 +12,7 @@ import { FavoritesProvider } from '../favorites/favorites';
 @Injectable()
 export class ProductsProvider {
 
-  constructor(public http: HttpClient, private storage: Storage, private favoritesProvider: FavoritesProvider) {
+  constructor(public http: HttpClient, private storage: Storage) {
     console.log('Constructing Products Provider');
   }
 
@@ -37,7 +35,6 @@ export class ProductsProvider {
   setProducts(products: Product[]) {
     return this.storage.ready()
       .then(() => this.storage.set('products', JSON.stringify(products)))
-      // .then(() => this.favoritesProvider.setFavorites(products))      
       .catch((error) => console.log(error, "Products not saved to storage."));
   }
 }

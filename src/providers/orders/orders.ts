@@ -12,7 +12,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 @Injectable()
 export class OrdersProvider {
 
-  private orders: Product[];
+  private orders: Product[] = [];
   private ordersSubject: ReplaySubject<Product[]>;
 
   constructor(public http: HttpClient, private storage: Storage) {
@@ -35,8 +35,24 @@ export class OrdersProvider {
     return this.ordersSubject;
   }
 
+  clearOrders() {
+    this.orders = [];
+    this.orders.length = 0;
+
+    this.setOrders(this.orders)
+      .then(() => this.ordersSubject.next(this.orders));
+  }
+
+  addToOrders(products: Product[]): Promise<Product[]> {
+
+    this.orders = this.orders.concat(products);
+
+    return this.setOrders(this.orders)
+      .then(() => this.ordersSubject.next(this.orders))
+      .then(() => { return this.orders });
+  }
+
   setOrders(products: Product[]): Promise<Product[]> {
-    this.ordersSubject.next(products);
 
     return this.storage.ready()
       .then(() => this.storage.set('orders', JSON.stringify(products)))
