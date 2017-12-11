@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 import { CartItemsProvider } from '../../providers/cartitems/cartitems';
 import { OrdersProvider } from '../../providers/orders/orders';
-import { FavoritesProvider } from '../../providers/favorites/favorites';
 
 /**
  * Generated class for the CheckoutPage page.
