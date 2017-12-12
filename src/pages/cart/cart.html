@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar transparent>
+  <ion-navbar >
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content no-padding>
-  <ion-list>
+  <ion-list *ngIf="!emptyCart">
     <ion-item #item *ngFor="let product of products" >
       <ion-label (click)="onViewProduct(product);">{{ product.name }}</ion-label>
       <button ion-button icon-only no-margin item-end clear color="" (click)="deleteFromCart(product)">
@@ -31,12 +31,13 @@
       </ion-note>
     </ion-item>
   </ion-list>
+  <empty-list *ngIf="emptyCart" title="Geen spaardoelen" message="Wil je er een kiezen in de winkel?" icon="hc-gift2"></empty-list>
 </ion-content>
 
-<ion-footer *ngIf="products.length > 0">
+<ion-footer *ngIf="!emptyCart">
   <ion-row padding>
     <ion-col no-padding>
-      <button ion-button color="primary" block outline (click)="goCheckout()">Checkout</button>
+      <button ion-button color="primary" block outline [disabled]='disableSubmit' (click)="goCheckout()">Checkout</button>
     </ion-col>
     <ion-col no-padding>
       <button ion-button color="primary" block clear>TOTAL {{ currency_symbol }} {{ total | number }}</button>

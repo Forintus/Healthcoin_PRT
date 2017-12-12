@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage/dist/storage';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { AlertsProvider } from '../alerts/alerts';
 
 /*
   Generated class for the CartProvider provider.
@@ -15,7 +16,7 @@ export class CartItemsProvider {
   private cartitems: Product[];
   private cartSubject: ReplaySubject<Product[]>;
 
-  constructor(public http: HttpClient, private storage: Storage) {
+  constructor(public http: HttpClient, private storage: Storage, private alertsProvider: AlertsProvider) {
     console.log('Constructing Cart Provider');
 
     this.cartSubject = new ReplaySubject<Product[]>();
@@ -23,7 +24,7 @@ export class CartItemsProvider {
     this.getCartFromStorage()
       .then((cartitems) => {
         this.cartitems = cartitems;
-        this.cartSubject.next(this.cartitems)
+        this.cartSubject.next(this.cartitems);
       });
   }
 
@@ -52,10 +53,24 @@ export class CartItemsProvider {
 
     if (index < 0) return;
 
-    product.units > 1 ? this.cartitems[index].units -= 1 : this.cartitems.splice(index, 1);
-
-    this.setCart(this.cartitems)
-      .then(() => this.cartSubject.next(this.cartitems));
+    if (product.units > 1) {
+      this.cartitems[index].units -= 1;
+      this.setCart(this.cartitems)
+        .then(() => this.cartSubject.next(this.cartitems));
+    }
+    else {
+      // this.alertsProvider.Toast.show("Product is removed from cart");
+      this.alertsProvider.Alert.confirm(
+        'Item verwijderen',
+        'Weet je zeker dat je dit item uit de lijst wilt verwijderen?')
+        .then((res) => {
+          this.cartitems.splice(index, 1);
+          this.setCart(this.cartitems)
+            .then(() => this.cartSubject.next(this.cartitems));
+        }, err => {
+          console.log('user cancelled');
+        })
+    }
   }
 
   clearCart() {

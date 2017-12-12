@@ -6,20 +6,22 @@
 -->
 <ion-header>
 
-  <ion-navbar transparent>
+  <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (tap)="showCart()">
-        <ion-icon name="hc-piggy-bank"></ion-icon>
-        <ion-badge item-end color="">{{ cartitems.length }}</ion-badge>
-      </button>
+      <ion-buttons end>
+        <button ion-button icon-only *ngIf="cartitems.length > 0" (click)="showCart()">
+          <ion-icon name="hc-piggy-bank"></ion-icon>
+          <ion-badge item-end color="secondary">{{ cartitems.length }}</ion-badge>
+        </button>
+      </ion-buttons>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  {{ coins }}
 </ion-content>

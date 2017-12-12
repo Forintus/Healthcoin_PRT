@@ -27,7 +27,7 @@
 <ion-footer *ngIf="products.length > 0">
   <ion-row padding>
     <ion-col no-padding>
-      <button ion-button color="primary" block outline (click)="onConfirm()">Confirm</button>
+      <button ion-button color="primary" block outline [disabled]='disableSubmit' (click)="confirmOrders()">Confirm</button>
     </ion-col>
     <ion-col no-padding>
       <button ion-button color="primary" block clear>TOTAL {{ currency_symbol }} {{ total | number }}</button>

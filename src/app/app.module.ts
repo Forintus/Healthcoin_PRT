@@ -15,6 +15,8 @@ import { SettingsProvider } from '../providers/settings/settings';
 import { ProductsProvider } from '../providers/products/products';
 import { CartItemsProvider } from '../providers/cartitems/cartitems';
 import { OrdersProvider } from '../providers/orders/orders';
+import { CoinsProvider } from '../providers/coins/coins';
+import { AlertsProvider } from '../providers/alerts/alerts';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -52,7 +54,9 @@ export function createTranslateLoader(http: HttpClient) {
     SettingsProvider,
     ProductsProvider,
     CartItemsProvider,
-    OrdersProvider
+    OrdersProvider,
+    CoinsProvider,
+    AlertsProvider
   ]
 })
 export class AppModule {}

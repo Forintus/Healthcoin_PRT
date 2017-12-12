@@ -50,7 +50,7 @@ export class ProductsPage implements OnDestroy {
     this.cartItemsProvider.addToCart(product);
   }
 
-  onShowCart() {
+  showCart() {
     this.navCtrl.push('CartPage');
   }
 }

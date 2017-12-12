@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CartItemsProvider } from '../../providers/cartitems/cartitems';
+import { CoinsProvider } from '../../providers/coins/coins';
 
 /**
  * Generated class for the HomePage page.
@@ -19,10 +20,16 @@ import { CartItemsProvider } from '../../providers/cartitems/cartitems';
 export class HomePage {
 
   private cartitems: Product[];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private cartProvider: CartItemsProvider) {
+  private coins: number;
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, private cartProvider: CartItemsProvider,
+    private coinsProvider: CoinsProvider) {
+      
     this.cartitems = [];
     
+    this.coinsProvider.getCoins()
+    .subscribe((coins) => this.coins = coins);
+
     this.cartProvider.getCart()
       .subscribe(cartitems => this.cartitems = cartitems);
   }

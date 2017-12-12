@@ -1,0 +1,13 @@
+empty-list {
+    ion-grid.emptylist {
+        height: 100%;
+        justify-content: center;
+        ion-card {
+            ion-card-content {
+                ion-icon {
+                    font-size: 3em;
+                }
+            }
+        }
+    }
+}

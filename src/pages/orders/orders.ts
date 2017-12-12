@@ -17,6 +17,7 @@ import { OrdersProvider } from '../../providers/orders/orders';
 export class OrdersPage {
 
   private products: Product[] = [];
+  private noOrders: boolean;
   private total: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private ordersProvider: OrdersProvider) {
@@ -24,6 +25,7 @@ export class OrdersPage {
     this.ordersProvider.getOrders()
       .subscribe((products) => {
         this.products = products;
+        this.noOrders = !(this.products.length > 0);
 
         this.total = this.products
           .map((product) => product.coins * product.units)

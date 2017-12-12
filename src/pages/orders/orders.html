@@ -18,7 +18,7 @@
 </ion-header>
 
 <ion-content no-padding>
-  <ion-list>
+  <ion-list *ngIf="!noOrders">
     <ion-item #item *ngFor="let product of products" >
       <ion-label (click)="onViewProduct(product);">{{ product.name }}</ion-label>
       <ion-note item-end>{{ product.units }}
@@ -27,9 +27,10 @@
       </ion-note>
     </ion-item>
   </ion-list>
+  <empty-list *ngIf="noOrders" title="Geen bestellingen" message="Wil je iets bestellen?" icon="hc-truck"></empty-list>
 </ion-content>
 
-<ion-footer *ngIf="products.length > 0">
+<ion-footer *ngIf="!noOrders">
   <ion-row padding>
     <!-- <ion-col no-padding>
       <button ion-button color="primary" block outline (click)="onConfirm()">Confirm</button>

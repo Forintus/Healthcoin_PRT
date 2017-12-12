@@ -5,15 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar transparent>
+  <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{ 'Products' | translate }}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only *ngIf="cartitems.length > 0" (click)="onShowCart()">
+      <button ion-button icon-only *ngIf="cartitems.length > 0" (click)="showCart()">
         <ion-icon name="hc-piggy-bank"></ion-icon>
-        <ion-badge item-end color="secondary">{{cartitems.length}}</ion-badge>
+        <ion-badge item-end color="secondary">{{ cartitems.length }}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
